@@ -1,182 +1,464 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASSEMBLE · 独立技术人 / 界面设计师</title>
+<meta name="description" content="独立技术人，工作在界面、计算与合成智能的交界处。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">个人主页</a>
-            <ul class="nav-menu">
-                <li><a href="#about">关于我</a></li>
-                <li><a href="#skills">技能</a></li>
-                <li><a href="#projects">项目</a></li>
-                <li><a href="#contact">联系</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>你好，我是开发者</h1>
-            <p class="subtitle">全栈开发者 / 设计爱好者</p>
-            <p class="description">
-                热爱编程与技术，专注于创建优雅的用户体验。
-                在这里你可以了解我的技能、项目和联系方式。
-            </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">联系我</a>
-                <a href="#projects" class="btn btn-secondary">查看项目</a>
-            </div>
-        </div>
-    </section>
+<!-- ============== 启动覆盖层 ============== -->
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">
+      <span class="boot-mark"></span>
+      <span class="boot-name">ASSEMBLE / SYSTEM</span>
+    </div>
+    <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+    <div class="boot-status" id="bootStatus">系统初始化 · 00%</div>
+  </div>
+</div>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>关于我</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        我是一名充满热情的全栈开发者，拥有多年的Web开发经验。
-                        专注于构建高性能、用户友好的应用程序。
-                    </p>
-                    <p>
-                        我相信技术可以改变世界，同时也热爱探索新技术和解决复杂问题。
-                        在工作之余，我喜欢阅读、旅行和摄影。
-                    </p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">年经验</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">完成项目</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">30+</span>
-                        <span class="stat-label">满意客户</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============== 背景层 ============== -->
+<div class="bg">
+  <canvas id="bgCanvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-scan"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-orb bg-orb-a"></div>
+  <div class="bg-orb bg-orb-b"></div>
+  <div class="bg-orb bg-orb-c"></div>
+</div>
 
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>技能专长</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>前端开发</h3>
-                    <ul>
-                        <li>HTML5 / CSS3</li>
-                        <li>JavaScript / TypeScript</li>
-                        <li>React / Vue.js</li>
-                        <li>响应式设计</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>后端开发</h3>
-                    <ul>
-                        <li>Node.js / Express</li>
-                        <li>Python / Django</li>
-                        <li>数据库设计</li>
-                        <li>API开发</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>其他技能</h3>
-                    <ul>
-                        <li>Git / 版本控制</li>
-                        <li>Docker / 容器化</li>
-                        <li>CI/CD 流程</li>
-                        <li>UI/UX 设计</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============== HUD 角标 ============== -->
+<div class="hud">
+  <div class="hud-corner tl"><span></span><span></span></div>
+  <div class="hud-corner tr"><span></span><span></span></div>
+  <div class="hud-corner bl"><span></span><span></span></div>
+  <div class="hud-corner br"><span></span><span></span></div>
+  <div class="hud-meta hud-meta-l">
+    <span class="dot"></span>
+    <span>北纬 39.9042 · 东经 116.4074</span>
+  </div>
+  <div class="hud-meta hud-meta-r">
+    <span id="hudClock">--:--:--</span>
+    <span class="dot dot-mag"></span>
+  </div>
+</div>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>精选项目</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>电商平台</h3>
-                    <p>基于React和Node.js构建的全功能电商网站，支持支付、订单管理等功能。</p>
-                    <div class="project-tags">
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>MongoDB</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>任务管理系统</h3>
-                    <p>团队协作工具，支持看板视图、任务分配、进度追踪等功能。</p>
-                    <div class="project-tags">
-                        <span>Vue.js</span>
-                        <span>Express</span>
-                        <span>PostgreSQL</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>数据可视化平台</h3>
-                    <p>交互式数据分析仪表板，支持多种图表类型和实时数据更新。</p>
-                    <div class="project-tags">
-                        <span>D3.js</span>
-                        <span>Python</span>
-                        <span>Django</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============== 导航 ============== -->
+<nav class="nav">
+  <a class="nav-logo" href="#top">
+    <span class="logo-mark">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M4 24 L16 4 L28 24" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 24 L16 14 L22 24" stroke="currentColor" stroke-width="1.5" opacity=".55"/>
+      </svg>
+    </span>
+    <span class="logo-text">ASSEMBLE<span class="logo-dot">·</span>SYS</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#about"><span class="nav-i">01</span>关于</a></li>
+    <li><a href="#work"><span class="nav-i">02</span>作品</a></li>
+    <li><a href="#lab"><span class="nav-i">03</span>实验室</a></li>
+    <li><a href="#notes"><span class="nav-i">04</span>笔记</a></li>
+    <li><a href="#contact"><span class="nav-i">05</span>联系</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    <span>建立连接</span>
+    <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+</nav>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>联系我</h2>
-            <p class="contact-intro">有任何问题或合作意向？欢迎随时联系我！</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-label">邮箱</span>
-                    <a href="mailto:hello@example.com">hello@example.com</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">GitHub</span>
-                    <a href="https://github.com" target="_blank">github.com/username</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-label">微信</span>
-                    <span>your_wechat_id</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<main id="top">
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 个人主页. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-tag">
+    <span class="tag-dot"></span>
+    <span>系统在线 · v4.7.2</span>
+  </div>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+  <h1 class="hero-title">
+    <span class="line"><span class="word">为</span><span class="word accent-cyan">合成智能</span></span>
+    <span class="line"><span class="word">设计</span></span>
+    <span class="line"><span class="word accent-grad">下一代人机界面。</span></span>
+  </h1>
+
+  <p class="hero-sub">
+    我是 <b>Assemble</b> &mdash; 一名独立技术人，构建工具、界面与小型自治系统，
+    在<i>机器智能</i>与<i>人类工艺</i>的交界处工作。
+    当前关注 <i>智能体交互</i>、<i>空间计算界面</i> 与 <i>计算美学</i> 三条主线。
+  </p>
+
+  <div class="hero-actions">
+    <a href="#work" class="btn btn-primary">
+      <span class="btn-label">查看精选作品</span>
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+    </a>
+    <a href="#lab" class="btn btn-ghost">
+      <span class="btn-label">进入实验室</span>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-cell">
+      <div class="stat-k">07Y</div>
+      <div class="stat-v">生产级工艺</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-k">42</div>
+      <div class="stat-v">已交付系统</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-k">11</div>
+      <div class="stat-v">运行中实验</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-k">∞</div>
+      <div class="stat-v">未完成的想法</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>向下滚动</span>
+    <span class="hero-scroll-line"></span>
+  </div>
+</section>
+
+<!-- ============== 关于 ============== -->
+<section id="about" class="section section-about">
+  <div class="section-head">
+    <div class="section-index">/ 01</div>
+    <h2 class="section-title">关于<br/><span class="muted">操作者。</span></h2>
+    <div class="section-meta">PROFILE · 0x01A</div>
+  </div>
+
+  <div class="about-grid">
+    <div class="panel panel-bio">
+      <div class="panel-header">
+        <span class="panel-dot"></span>
+        <span>主档案 / BIO</span>
+      </div>
+      <p>
+        工程出身，绕道交互设计，如今游走在两者之间 &mdash;
+        构建 <b>像乐器一样的界面</b>，给下一代计算使用。
+      </p>
+      <p>
+        我的工作关注一件事：当软件越来越自主，人应该如何指挥它、信任它、与之共处。
+        偏好那种缓慢、克制、视觉锋利、行为诚实的系统。
+      </p>
+      <p class="muted small">
+        2022 年起独立工作 · 常驻北京 · 全球远程协作。
+      </p>
+    </div>
+
+    <div class="panel panel-focus">
+      <div class="panel-header">
+        <span class="panel-dot dot-cyan"></span>
+        <span>关注方向 / VECTORS</span>
+      </div>
+      <ul class="focus-list">
+        <li><span class="fl-i">F01</span><span class="fl-t">智能体界面与工具使用的交互范式</span></li>
+        <li><span class="fl-i">F02</span><span class="fl-t">空间与环境计算的界面表层</span></li>
+        <li><span class="fl-i">F03</span><span class="fl-t">生成式字体与动态排印</span></li>
+        <li><span class="fl-i">F04</span><span class="fl-t">本地优先的创作工具</span></li>
+        <li><span class="fl-i">F05</span><span class="fl-t">计算美学与着色器叙事</span></li>
+      </ul>
+    </div>
+
+    <div class="panel panel-stack">
+      <div class="panel-header">
+        <span class="panel-dot dot-violet"></span>
+        <span>技术栈 / RUNTIME</span>
+      </div>
+      <div class="stack-grid">
+        <div><span class="sk">TypeScript</span><span class="sv">核心</span></div>
+        <div><span class="sk">React · Next</span><span class="sv">表层</span></div>
+        <div><span class="sk">Three · WebGL · GLSL</span><span class="sv">渲染</span></div>
+        <div><span class="sk">Rust · Go</span><span class="sv">边缘</span></div>
+        <div><span class="sk">Python · PyTorch</span><span class="sv">模型</span></div>
+        <div><span class="sk">Figma · Blender</span><span class="sv">造型</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 精选作品 ============== -->
+<section id="work" class="section section-work">
+  <div class="section-head">
+    <div class="section-index">/ 02</div>
+    <h2 class="section-title">精选<br/><span class="muted">作品。</span></h2>
+    <div class="section-meta">2023 — 2026 · 精选</div>
+  </div>
+
+  <div class="work-grid">
+    <article class="work-card work-feature" data-tilt>
+      <div class="wc-visual">
+        <div class="wc-orb"></div>
+        <div class="wc-rings">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="wc-lines"></div>
+      </div>
+      <div class="wc-body">
+        <div class="wc-meta">
+          <span>项目 · 001</span>
+          <span class="dot"></span>
+          <span>2026</span>
+          <span class="dot"></span>
+          <span class="badge">运行中</span>
+        </div>
+        <h3 class="wc-title">Halcyon &mdash; 智能体操作系统层</h3>
+        <p class="wc-desc">
+          桌面级的智能体调度界面。把工具、记忆与意图视作可见、可触、可拖拽的空间对象，
+          让人和多智能体一起工作时仍然保持掌控。
+        </p>
+        <div class="wc-tags">
+          <span>智能体</span><span>Tauri</span><span>Rust</span><span>WebGL</span>
+        </div>
+        <a href="#" class="wc-link">查看案例
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="work-card" data-tilt>
+      <div class="wc-visual wc-visual-grid">
+        <div class="grid-mesh"></div>
+        <div class="grid-pulse"></div>
+      </div>
+      <div class="wc-body">
+        <div class="wc-meta">
+          <span>项目 · 002</span><span class="dot"></span><span>2025</span>
+        </div>
+        <h3 class="wc-title">Lattice &mdash; 空间画布运行时</h3>
+        <p class="wc-desc">
+          基于 WebGPU 的无限画布。把模型、提示与数据流，编排成一个活的思考表层。
+        </p>
+        <div class="wc-tags"><span>WebGPU</span><span>画布</span><span>开发者体验</span></div>
+      </div>
+    </article>
+
+    <article class="work-card" data-tilt>
+      <div class="wc-visual wc-visual-wave">
+        <svg viewBox="0 0 320 160" preserveAspectRatio="none">
+          <path d="M0,90 Q40,40 80,90 T160,90 T240,90 T320,90" stroke="url(#g1)" stroke-width="1.4" fill="none"/>
+          <path d="M0,100 Q40,60 80,100 T160,100 T240,100 T320,100" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".6"/>
+          <path d="M0,110 Q40,80 80,110 T160,110 T240,110 T320,110" stroke="url(#g1)" stroke-width="1" fill="none" opacity=".35"/>
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#00d9ff"/>
+              <stop offset=".5" stop-color="#7c5cff"/>
+              <stop offset="1" stop-color="#ff2d92"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="wc-body">
+        <div class="wc-meta">
+          <span>项目 · 003</span><span class="dot"></span><span>2025</span>
+        </div>
+        <h3 class="wc-title">Signal &mdash; 生成式字体系统</h3>
+        <p class="wc-desc">
+          一套响应实时数据的字体引擎。已被两家独立新闻机构用作环境信息呈现。
+        </p>
+        <div class="wc-tags"><span>字体</span><span>动态</span><span>SVG</span></div>
+      </div>
+    </article>
+
+    <article class="work-card" data-tilt>
+      <div class="wc-visual wc-visual-stack">
+        <div class="stack-cube c1"></div>
+        <div class="stack-cube c2"></div>
+        <div class="stack-cube c3"></div>
+      </div>
+      <div class="wc-body">
+        <div class="wc-meta">
+          <span>项目 · 004</span><span class="dot"></span><span>2024</span>
+        </div>
+        <h3 class="wc-title">Drift &mdash; 本地优先的草图工具</h3>
+        <p class="wc-desc">
+          原生草图环境，把手绘输入和端上扩散模型结合。
+          为慎重、缓慢的构思过程而设计。
+        </p>
+        <div class="wc-tags"><span>原生</span><span>扩散模型</span><span>工艺</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== 实验室 ============== -->
+<section id="lab" class="section section-lab">
+  <div class="section-head">
+    <div class="section-index">/ 03</div>
+    <h2 class="section-title">实验<br/><span class="muted">室。</span></h2>
+    <div class="section-meta">实验性 · 未稳定</div>
+  </div>
+
+  <div class="lab-grid">
+    <div class="lab-cell">
+      <div class="lab-id">EXP·011</div>
+      <h4>光子字体</h4>
+      <p>用模拟光线折射驱动的可变字体。</p>
+      <div class="lab-state">运行中</div>
+    </div>
+    <div class="lab-cell">
+      <div class="lab-id">EXP·010</div>
+      <h4>柔性智能体</h4>
+      <p>住在 Markdown 文件里的轻量级人格。</p>
+      <div class="lab-state">运行中</div>
+    </div>
+    <div class="lab-cell">
+      <div class="lab-id">EXP·009</div>
+      <h4>田野笔记</h4>
+      <p>传感器驱动的环境式长阅读界面。</p>
+      <div class="lab-state state-paused">已暂停</div>
+    </div>
+    <div class="lab-cell">
+      <div class="lab-id">EXP·008</div>
+      <h4>潜空间图册</h4>
+      <p>把小型语言模型的内部空间画出来。</p>
+      <div class="lab-state">运行中</div>
+    </div>
+    <div class="lab-cell">
+      <div class="lab-id">EXP·007</div>
+      <h4>安静编译器</h4>
+      <p>尊重注意力与电池寿命的构建工具。</p>
+      <div class="lab-state state-shipped">已发布</div>
+    </div>
+    <div class="lab-cell">
+      <div class="lab-id">EXP·006</div>
+      <h4>潮汐着色器</h4>
+      <p>跨整个 ASSEMBLE 系统使用的实时流体背景。</p>
+      <div class="lab-state state-shipped">已发布</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 笔记 ============== -->
+<section id="notes" class="section section-notes">
+  <div class="section-head">
+    <div class="section-index">/ 04</div>
+    <h2 class="section-title">田野<br/><span class="muted">笔记。</span></h2>
+    <div class="section-meta">写作 · 持续更新</div>
+  </div>
+
+  <div class="notes-list">
+    <a href="#" class="note">
+      <div class="note-date">2026 · 04</div>
+      <div class="note-body">
+        <h4>给会回应的系统设计界面</h4>
+        <p>从控件到对话的转变，以及我们为此付出的代价。</p>
+      </div>
+      <div class="note-arrow">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </a>
+    <a href="#" class="note">
+      <div class="note-date">2026 · 02</div>
+      <div class="note-body">
+        <h4>反对无限画布</h4>
+        <p>空间软件为什么总是失败 &mdash; 以及如何修复它。</p>
+      </div>
+      <div class="note-arrow">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </a>
+    <a href="#" class="note">
+      <div class="note-date">2025 · 11</div>
+      <div class="note-body">
+        <h4>做出凌晨两点也愿意打开的工具</h4>
+        <p>一份关于"如何带着审美写软件"的简短田野指南。</p>
+      </div>
+      <div class="note-arrow">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </a>
+    <a href="#" class="note">
+      <div class="note-date">2025 · 07</div>
+      <div class="note-body">
+        <h4>把着色器当作一种文学媒介</h4>
+        <p>我们能用光、运动与时间，写出什么。</p>
+      </div>
+      <div class="note-arrow">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============== 联系 ============== -->
+<section id="contact" class="section section-contact">
+  <div class="contact-wrap">
+    <div class="contact-head">
+      <div class="section-index">/ 05</div>
+      <h2 class="contact-title">
+        让我们一起做点<br/>
+        <span class="accent-grad">安静、精准</span><br/>
+        <span class="muted">而略带奇异的东西。</span>
+      </h2>
+    </div>
+
+    <div class="contact-body">
+      <a href="mailto:hello@assemble.systems" class="contact-mail">
+        <span class="cm-label">主要通道</span>
+        <span class="cm-mail">hello@assemble.systems</span>
+        <span class="cm-arrow">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+      </a>
+
+      <div class="contact-links">
+        <a href="#" class="cl">
+          <span class="cl-i">01</span>
+          <span class="cl-n">GitHub</span>
+          <span class="cl-h">/assemble-sys</span>
+        </a>
+        <a href="#" class="cl">
+          <span class="cl-i">02</span>
+          <span class="cl-n">X / Twitter</span>
+          <span class="cl-h">@assemble_sys</span>
+        </a>
+        <a href="#" class="cl">
+          <span class="cl-i">03</span>
+          <span class="cl-n">即刻</span>
+          <span class="cl-h">/assemble</span>
+        </a>
+        <a href="#" class="cl">
+          <span class="cl-i">04</span>
+          <span class="cl-n">小红书</span>
+          <span class="cl-h">/assemble</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 页脚 ============== -->
+<footer class="footer">
+  <div class="foot-l">
+    <span class="foot-mark"></span>
+    <span>ASSEMBLE / SYSTEM · v4.7.2</span>
+  </div>
+  <div class="foot-c">
+    <span>© 2026 — 在暗处打磨，慎重地交付。</span>
+  </div>
+  <div class="foot-r">
+    <span id="footClock">--:--:--</span>
+    <span class="dot"></span>
+    <span>UTC+08</span>
+  </div>
+</footer>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
